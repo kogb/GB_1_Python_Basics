@@ -1,0 +1,138 @@
+Урок 7. Управление пакетами и репозиториями. Основы сетевой безопасности
+Скрыть
+1. Подключить репозиторий с nginx любым удобным способом, установить nginx и потом удалить nginx, используя утилиту dpkg.
+nikolay@nikolay-GB:~$ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor     | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1561  100  1561    0     0   5902      0 --:--:-- --:--:-- --:--:--  5912
+nikolay@nikolay-GB:~$ gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+pub   rsa2048 2011-08-19 [SC] [expires: 2024-06-14]
+      573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+uid                      nginx signing key <signing-key@nginx.com>
+
+nikolay@nikolay-GB:~$ echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+> http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" \
+>     | sudo tee /etc/apt/sources.list.d/nginx.list
+deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/ubuntu focal nginx
+nikolay@nikolay-GB:~$ sudo apt update
+Hit:1 http://by.archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://by.archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:3 http://by.archive.ubuntu.com/ubuntu focal-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu focal-security InRelease  
+Get:5 http://nginx.org/packages/mainline/ubuntu focal InRelease [3.599 B]
+Get:6 http://nginx.org/packages/mainline/ubuntu focal/nginx amd64 Packages [41,6 kB]
+Fetched 45,2 kB in 1s (34,2 kB/s)   
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+1 package can be upgraded. Run 'apt list --upgradable' to see it.
+N: Skipping acquire of configured file 'nginx/binary-i386/Packages' as repository 'http://nginx.org/packages/mainline/ubuntu focal InRelease' doesn't support architecture 'i386'
+nikolay@nikolay-GB:~$ sudo apt install nginx
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libfwupdplugin1
+Use 'sudo apt autoremove' to remove it.
+The following packages will be upgraded:
+  nginx
+1 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+1 not fully installed or removed.
+Need to get 887 kB of archives.
+After this operation, 3.104 kB of additional disk space will be used.
+Get:1 http://nginx.org/packages/mainline/ubuntu focal/nginx amd64 nginx amd64 1.23.0-1~focal [887 kB]
+Fetched 887 kB in 0s (3.322 kB/s)
+(Reading database ... 165308 files and directories currently installed.)
+Preparing to unpack .../nginx_1.23.0-1~focal_amd64.deb ...
+Unpacking nginx (1.23.0-1~focal) over (1.18.0-0ubuntu1.3) ...
+Setting up nginx (1.23.0-1~focal) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /lib/systemd/system/nginx.service.
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for systemd (245.4-4ubuntu3.17) ...
+nikolay@nikolay-GB:~$ cat /etc/apt/sources.list | grep -v ^# | grep -v ^$
+deb http://by.archive.ubuntu.com/ubuntu/ focal main restricted
+deb http://by.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+deb http://by.archive.ubuntu.com/ubuntu/ focal universe
+deb http://by.archive.ubuntu.com/ubuntu/ focal-updates universe
+deb http://by.archive.ubuntu.com/ubuntu/ focal multiverse
+deb http://by.archive.ubuntu.com/ubuntu/ focal-updates multiverse
+deb http://by.archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu focal-security main restricted
+deb http://security.ubuntu.com/ubuntu focal-security universe
+deb http://security.ubuntu.com/ubuntu focal-security multiverse
+nikolay@nikolay-GB:~$ apt-cache policy | grep http | awk '{print $2 $3}' | sort -u
+http://by.archive.ubuntu.com/ubuntufocal-backports/main
+http://by.archive.ubuntu.com/ubuntufocal-backports/universe
+http://by.archive.ubuntu.com/ubuntufocal/main
+http://by.archive.ubuntu.com/ubuntufocal/multiverse
+http://by.archive.ubuntu.com/ubuntufocal/restricted
+http://by.archive.ubuntu.com/ubuntufocal/universe
+http://by.archive.ubuntu.com/ubuntufocal-updates/main
+http://by.archive.ubuntu.com/ubuntufocal-updates/multiverse
+http://by.archive.ubuntu.com/ubuntufocal-updates/restricted
+http://by.archive.ubuntu.com/ubuntufocal-updates/universe
+http://nginx.org/packages/mainline/ubuntufocal/nginx
+http://security.ubuntu.com/ubuntufocal-security/main
+http://security.ubuntu.com/ubuntufocal-security/multiverse
+http://security.ubuntu.com/ubuntufocal-security/restricted
+http://security.ubuntu.com/ubuntufocal-security/universe
+nikolay@nikolay-GB:~$ sudo dpkg -r nginx
+[sudo] password for nikolay: 
+(Reading database ... 165339 files and directories currently installed.)
+Removing nginx (1.23.0-1~focal) ...
+Processing triggers for man-db (2.9.1-1) ...
+nikolay@nikolay-GB:~$
+
+################################################################################
+
+2. Установить пакет на свой выбор, используя snap.
+nikolay@nikolay-GB:~$ snap find telegram
+Name                 Version             Publisher               Notes    Summary
+telegram-desktop     4.0.2               telegram.desktop        -        Fast. Secure. Powerful.
+.............................................................
+nikolay@nikolay-GB:~$ snap list
+Name               Version             Rev    Tracking         Publisher   Notes
+bare               1.0                 5      latest/stable    canonical✓  base
+core20             20220527            1518   latest/stable    canonical✓  base
+gnome-3-38-2004    0+git.09fbd6c       106    latest/stable/…  canonical✓  -
+gtk-common-themes  0.1-79-ga83e90c     1534   latest/stable/…  canonical✓  -
+snap-store         3.38.0-66-gbd5b8f7  558    latest/stable/…  canonical✓  -
+snapd              2.56                16010  latest/stable    canonical✓  snapd
+nikolay@nikolay-GB:~$ sudo snap install telegram-desktop
+telegram-desktop 4.0.2 from Telegram FZ-LLC (telegram.desktop) installed
+nikolay@nikolay-GB:~$ snap list
+Name               Version             Rev    Tracking         Publisher         Notes
+bare               1.0                 5      latest/stable    canonical✓        base
+core20             20220527            1518   latest/stable    canonical✓        base
+core22             20220607            188    latest/stable    canonical✓        base
+gnome-3-38-2004    0+git.09fbd6c       106    latest/stable/…  canonical✓        -
+gtk-common-themes  0.1-79-ga83e90c     1534   latest/stable/…  canonical✓        -
+snap-store         3.38.0-66-gbd5b8f7  558    latest/stable/…  canonical✓        -
+snapd              2.56                16010  latest/stable    canonical✓        snapd
+telegram-desktop   4.0.2               4024   latest/stable    telegram.desktop  -
+nikolay@nikolay-GB:~$ sudo snap remove telegram-desktop
+telegram-desktop removed
+nikolay@nikolay-GB:~$ 
+
+###############################################################################################
+
+3. Настроить iptables: разрешить подключения только на 22-й и 80-й порты.
+
+nikolay@nikolay-GB:~$ sudo iptables -P INPUT DROP
+nikolay@nikolay-GB:~$ sudo iptables -A INPUT -i eth0 -p tcp --dport 80 --match state --state NEW -j ACCEPT
+nikolay@nikolay-GB:~$ sudo iptables -A INPUT -i eth0 -p tcp --dport 22 --match state --state NEW -j ACCEPT
+nikolay@nikolay-GB:~$ sudo iptables -L
+Chain INPUT (policy DROP)
+target     prot opt source               destination         
+ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http state NEW
+ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:ssh state NEW
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+nikolay@nikolay-GB:~$ 
+
+
+4. * Настроить проброс портов локально с порта 80 на порт 8080.

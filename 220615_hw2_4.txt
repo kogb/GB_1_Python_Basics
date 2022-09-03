@@ -1,0 +1,125 @@
+nikolay@nikolay-GB:~$ pwd
+/home/nikolay
+nikolay@nikolay-GB:~$ echo "Jil bil Pes">file_n.txt
+nikolay@nikolay-GB:~$ cat file_n.txt
+Jil bil Pes
+nikolay@nikolay-GB:~$ cat /etc
+cat: /etc: Is a directory
+
+nikolay@nikolay-GB:~$ sudo ls /etc -a
+[sudo] password for nikolay: 
+.			       cron.hourly	    glvnd	     ld.so.conf      network		      rc2.d		 sysctl.conf
+..			       cron.monthly	    gnome	     ld.so.conf.d    networkd-dispatcher      rc3.d		 sysctl.d
+acpi			       crontab		    groff	     legal	     NetworkManager	      rc4.d		 systemd
+adduser.conf		       cron.weekly	    group	     libao.conf      networks		      rc5.d		 terminfo
+alsa			       cups		    group-	     libaudit.conf   newt		      rc6.d		 thermald
+alternatives		       cupshelpers	    grub.d	     libblockdev     nsswitch.conf	      rcS.d		 timezone
+anacrontab		       dbus-1		    gshadow	     libnl-3	     openvpn		      resolv.conf	 tmpfiles.d
+apg.conf		       dconf		    gshadow-	     libpaper.d      opt		      rmt		 ubuntu-advantage
+apm			       debconf.conf	    gss		     locale.alias    os-release		      rpc		 ucf.conf
+apparmor		       debian_version	    gtk-2.0	     locale.gen      PackageKit		      rsyslog.conf	 udev
+apparmor.d		       default		    gtk-3.0	     localtime	     pam.conf		      rsyslog.d		 udisks2
+apport			       deluser.conf	    hdparm.conf      logcheck	     pam.d		      rygel.conf	 ufw
+appstream.conf		       depmod.d		    host.conf	     login.defs      papersize		      sane.d		 update-manager
+apt			       dhcp		    hostid	     logrotate.conf  passwd		      security		 update-motd.d
+avahi			       dictionaries-common  hostname	     logrotate.d     passwd-		      selinux		 update-notifier
+bash.bashrc		       dpkg		    hosts	     lsb-release     pcmcia		      sensors3.conf	 UPower
+bash_completion		       e2scrub.conf	    hosts.allow      ltrace.conf     perl		      sensors.d		 usb_modeswitch.conf
+bash_completion.d	       emacs		    hosts.deny	     machine-id      pki		      services		 usb_modeswitch.d
+bindresvport.blacklist	       environment	    hp		     magic	     pm			      sgml		 vim
+binfmt.d		       environment.d	    ifplugd	     magic.mime      pnm2ppa.conf	      shadow		 vmware-tools
+bluetooth		       ethertypes	    init	     mailcap	     polkit-1		      shadow-		 vtrgb
+brlapi.key		       firefox		    init.d	     mailcap.order   popularity-contest.conf  shells		 vulkan
+brltty			       fonts		    initramfs-tools  manpath.config  ppp		      skel		 wgetrc
+brltty.conf		       fprintd.conf	    inputrc	     mime.types      printcap		      snmp		 wpa_supplicant
+ca-certificates		       fstab		    insserv.conf.d   mke2fs.conf     profile		      speech-dispatcher  X11
+ca-certificates.conf	       fuse.conf	    iproute2	     modprobe.d      profile.d		      ssh		 xattr.conf
+ca-certificates.conf.dpkg-old  fwupd		    issue	     modules	     protocols		      ssl		 xdg
+calendar		       gai.conf		    issue.net	     modules-load.d  pulse		      subgid		 xml
+chatscripts		       gamemode.ini	    kernel	     mtab	     .pwd.lock		      subgid-		 zsh_command_not_found
+console-setup		       gdb		    kernel-img.conf  mtools.conf     python3		      subuid
+cracklib		       gdm3		    kerneloops.conf  mysql	     python3.8		      subuid-
+cron.d			       geoclue		    ldap	     nanorc	     rc0.d		      sudoers
+cron.daily		       ghostscript	    ld.so.cache      netplan	     rc1.d		      sudoers.d
+
+#здесь схалявил, через редактор word заменил пробельные отступы на путь к файлам и папкам (сразу в vim попробывал, но не задалось, нужно больше времени)
+
+nikolay@nikolay-GB:~$ cat /etc/acpi /etc/cron.monthly /etc/glvnd /etc/ld.so.cache /etc/nanorc /etc/rc0.d /etc/subuid- /etc/adduser.conf /etc/crontab /etc/gnome /etc/ld.so.conf /etc/netplan /etc/rc1.d /etc/sudoers /etc/alsa /etc/cron.weekly /etc/groff /etc/ld.so.conf.d /etc/network /etc/rc2.d /etc/sudoers.d /etc/alternatives /etc/cups /etc/group /etc/legal /etc/networkd-dispatcher /etc/rc3.d /etc/sysctl.conf /etc/anacrontab /etc/cupshelpers /etc/group- /etc/libao.conf /etc/NetworkManager /etc/rc4.d /etc/sysctl.d /etc/apg.conf /etc/dbus-1 /etc/grub.d /etc/libaudit.conf /etc/networks /etc/rc5.d /etc/systemd /etc/apm /etc/dconf /etc/gshadow /etc/libblockdev /etc/newt /etc/rc6.d /etc/terminfo /etc/apparmor /etc/debconf.conf /etc/gshadow- /etc/libnl-3 /etc/nsswitch.conf /etc/rcS.d /etc/thermald /etc/apparmor.d /etc/debian_version /etc/gss /etc/libpaper.d /etc/openvpn /etc/resolv.conf /etc/timezone /etc/apport /etc/default /etc/gtk-2.0 /etc/locale.alias /etc/opt /etc/rmt /etc/tmpfiles.d /etc/appstream.conf /etc/deluser.conf /etc/gtk-3.0 /etc/locale.gen /etc/os-release /etc/rpc /etc/ubuntu-advantage /etc/apt /etc/depmod.d /etc/hdparm.conf /etc/localtime /etc/PackageKit /etc/rsyslog.conf /etc/ucf.conf /etc/avahi /etc/dhcp /etc/host.conf /etc/logcheck /etc/pam.conf /etc/rsyslog.d /etc/udev /etc/bash.bashrc /etc/dictionaries-common /etc/hostid /etc/login.defs /etc/pam.d /etc/rygel.conf /etc/udisks2 /etc/bash_completion /etc/dpkg /etc/hostname /etc/logrotate.conf /etc/papersize /etc/sane.d /etc/ufw /etc/bash_completion.d /etc/e2scrub.conf /etc/hosts /etc/logrotate.d /etc/passwd /etc/security /etc/update-manager /etc/bindresvport.blacklist /etc/emacs /etc/hosts.allow /etc/lsb-release /etc/passwd- /etc/selinux /etc/update-motd.d /etc/binfmt.d /etc/environment /etc/hosts.deny /etc/ltrace.conf /etc/pcmcia /etc/sensors3.conf /etc/update-notifier /etc/bluetooth /etc/environment.d /etc/hp /etc/machine-id /etc/perl /etc/sensors.d /etc/UPower /etc/brlapi.key /etc/ethertypes /etc/ifplugd /etc/magic /etc/pki /etc/services /etc/usb_modeswitch.conf /etc/brltty /etc/firefox /etc/init /etc/magic.mime /etc/pm /etc/sgml /etc/usb_modeswitch.d /etc/brltty.conf /etc/fonts /etc/init.d /etc/mailcap /etc/pnm2ppa.conf /etc/shadow /etc/vim /etc/ca-certificates /etc/fprintd.conf /etc/initramfs-tools /etc/mailcap.order /etc/polkit-1 /etc/shadow- /etc/vmware-tools /etc/ca-certificates.conf /etc/fstab /etc/inputrc /etc/manpath.config /etc/popularity-contest.conf /etc/shells /etc/vtrgb /etc/ca-certificates.conf.dpkg-old /etc/fuse.conf /etc/insserv.conf.d /etc/mime.types /etc/ppp /etc/skel /etc/vulkan /etc/calendar /etc/fwupd /etc/iproute2 /etc/mke2fs.conf /etc/printcap /etc/snmp /etc/wgetrc /etc/chatscripts /etc/gai.conf /etc/issue /etc/modprobe.d /etc/profile /etc/speech-dispatcher /etc/wpa_supplicant /etc/console-setup /etc/gamemode.ini /etc/issue.net /etc/modules /etc/profile.d /etc/ssh /etc/X11 /etc/cracklib /etc/gdb /etc/kernel /etc/modules-load.d /etc/protocols /etc/ssl /etc/xattr.conf /etc/cron.d /etc/gdm3 /etc/kernel-img.conf /etc/mtab /etc/pulse /etc/subgid /etc/xdg /etc/cron.daily /etc/geoclue /etc/kerneloops.conf /etc/mtools.conf /etc/python3 /etc/subgid- /etc/xml /etc/cron.hourly /etc/ghostscript /etc/ldap /etc/mysql /etc/python3.8 /etc/subuid /etc/zsh_command_not_found > damp_.crazy.txt 2> damp_error.txt
+
+#данные из файлов находятся в damp_.crazy.txt, файл с ошибками в damp_error.txt
+
+#######################################################################################################
+2.
+nikolay@nikolay-GB:~$ ls -l  | cut -d" " -f1 | tail -n +2 | sort | uniq
+drwx------
+drwxr-xr-x
+-rw-rw-r--
+
+########################################################################################################
+3.
+# ввожу PasswordAuthentication no
+nikolay@nikolay-GB:~$ sudo vim /etc/ssh/sshd_config
+nikolay@nikolay-GB:~$ systemctl restart sshd
+nikolay@nikolay-GB:~$ sudo vim /etc/ssh/sshd_config
+nikolay@nikolay-GB:~$ systemctl reload sshd
+
+Reload перечитает конфиг службы без ее остановки, restart остановит ее и запустит вновь. 
+
+nikolay@nikolay-GB:~$ cat > file_name
+Po stene polzet ytug, znahit tam y nego gnezdonikolay@nikolay-GB:~$ 
+После ввода ctrl+d read терминала - поток номер 0 (stdin) осуществит return введенного.
+
+########################################################################################################
+4.
+
+nikolay@nikolay-GB:~$ sudo apt-get install mc
+[sudo] password for nikolay: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libssh2-1 mc-data
+Suggested packages:
+  arj catdvi | texlive-binaries dbview djvulibre-bin epub-utils gv imagemagick libaspell-dev links | w3m | lynx odt2txt python python-boto python-tz
+The following NEW packages will be installed:
+  libssh2-1 mc mc-data
+0 upgraded, 3 newly installed, 0 to remove and 68 not upgraded.
+Need to get 1.817 kB of archives.
+After this operation, 7.994 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://by.archive.ubuntu.com/ubuntu focal/universe amd64 libssh2-1 amd64 1.8.0-2.1build1 [75,4 kB]
+Get:2 http://by.archive.ubuntu.com/ubuntu focal/universe amd64 mc-data all 3:4.8.24-2ubuntu1 [1.265 kB]
+Get:3 http://by.archive.ubuntu.com/ubuntu focal/universe amd64 mc amd64 3:4.8.24-2ubuntu1 [477 kB]
+Fetched 1.817 kB in 0s (9.632 kB/s)
+Selecting previously unselected package libssh2-1:amd64.
+(Reading database ... 160350 files and directories currently installed.)
+Preparing to unpack .../libssh2-1_1.8.0-2.1build1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.8.0-2.1build1) ...
+Selecting previously unselected package mc-data.
+Preparing to unpack .../mc-data_3%3a4.8.24-2ubuntu1_all.deb ...
+Unpacking mc-data (3:4.8.24-2ubuntu1) ...
+Selecting previously unselected package mc.
+Preparing to unpack .../mc_3%3a4.8.24-2ubuntu1_amd64.deb ...
+Unpacking mc (3:4.8.24-2ubuntu1) ...
+Setting up mc-data (3:4.8.24-2ubuntu1) ...
+Setting up libssh2-1:amd64 (1.8.0-2.1build1) ...
+Setting up mc (3:4.8.24-2ubuntu1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.7) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu1) ...
+nikolay@nikolay-GB:~$ mc
+nikolay@nikolay-GB:~$ ps aux | grep mc | grep -v grep
+nikolay    33957  0.0  0.4  25112  9892 pts/0    S+   00:09   0:00 mc 
+nikolay@nikolay-GB:~$ pgrep mc
+33957
+nikolay@nikolay-GB:~$ kill -9 33957
+nikolay@nikolay-GB:~$ 
+
+
+
+
+
+

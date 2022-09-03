@@ -1,0 +1,305 @@
+nikolay@nikolay-GB:~$ sudo useradd -m -s /bin/bash user1
+[sudo] password for nikolay: 
+nikolay@nikolay-GB:~$ sudo passwd user1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+nikolay@nikolay-GB:~$ su user1
+Password: 
+user1@nikolay-GB:/home/nikolay$ whoami
+user1
+user1@nikolay-GB:/home/nikolay$ exit
+exit
+nikolay@nikolay-GB:~$ sudo userdel -fr user1
+userdel: user1 mail spool (/var/mail/user1) not found
+nikolay@nikolay-GB:~$ compgen -u
+root
+daemon
+bin
+sys
+sync
+games
+man
+lp
+mail
+news
+uucp
+proxy
+www-data
+backup
+list
+irc
+gnats
+nobody
+systemd-network
+systemd-resolve
+systemd-timesync
+messagebus
+syslog
+_apt
+tss
+uuidd
+tcpdump
+avahi-autoipd
+usbmux
+rtkit
+dnsmasq
+cups-pk-helper
+speech-dispatcher
+avahi
+kernoops
+saned
+nm-openvpn
+hplip
+whoopsie
+colord
+geoclue
+pulse
+gnome-initial-setup
+
+
+nikolay@nikolay-GB:~$ sudo groupadd GB_t
+[sudo] password for nikolay:
+nikolay@nikolay-GB:~$ more /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,nikolay
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:nikolay
+floppy:x:25:
+tape:x:26:
+sudo:x:27:nikolay
+audio:x:29:pulse
+dip:x:30:nikolay
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:nikolay
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+bluetooth:x:112:
+ssl-cert:x:113:
+uuidd:x:114:
+tcpdump:x:115:
+avahi-autoipd:x:116:
+rtkit:x:117:
+ssh:x:118:
+netdev:x:119:
+lpadmin:x:120:nikolay
+avahi:x:121:
+scanner:x:122:saned
+saned:x:123:
+nm-openvpn:x:124:
+whoopsie:x:125:
+colord:x:126:
+geoclue:x:127:
+pulse:x:128:
+pulse-access:x:129:
+gdm:x:130:
+sssd:x:131:
+lxd:x:132:nikolay
+nikolay:x:1000:
+sambashare:x:133:nikolay
+systemd-coredump:x:999:
+vboxsf:x:998:
+GB_t:x:1001:
+nikolay@nikolay-GB:~$ sudo useradd -m -s /bin/bash user1
+nikolay@nikolay-GB:~$ sudo useradd -m -s /bin/bash user2
+nikolay@nikolay-GB:~$ sudo useradd -m -s /bin/bash user3
+nikolay@nikolay-GB:~$ sudo passwd user1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+nikolay@nikolay-GB:~$ sudo passwd user2
+New password: 
+Retype new password: 
+passwd: password updated successfully
+nikolay@nikolay-GB:~$ sudo passwd user3
+New password: 
+Retype new password: 
+passwd: password updated successfully
+nikolay@nikolay-GB:~$ sudo usermod -a -G GB_t user1
+nikolay@nikolay-GB:~$ groups user1
+user1 : user1 GB_t
+nikolay@nikolay-GB:~$ groups user3
+user3 : user3
+nikolay@nikolay-GB:~$ sudo gpasswd -d user1 GB_t
+Removing user user1 from group GB_t
+nikolay@nikolay-GB:~$ id user1
+uid=1001(user1) gid=1002(user1) groups=1002(user1)
+nikolay@nikolay-GB:~$ 
+
+nikolay@nikolay-GB:~$ sudo usermod -G sudo user2
+[sudo] password for nikolay: 
+nikolay@nikolay-GB:~$ id user2
+uid=1002(user2) gid=1003(user2) groups=1003(user2),27(sudo)
+nikolay@nikolay-GB:~$ su user2
+Password: 
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+user2@nikolay-GB:/home/nikolay$ sudo su
+[sudo] password for user2: 
+root@nikolay-GB:/home/nikolay# whoami
+root
+root@nikolay-GB:/home/nikolay# 
+
+
+
+nikolay@nikolay-GB:~$ sudo visudo
+
+
+  GNU nano 4.8                                                               /etc/sudoers.tmp                                                                         
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+
+
+
+
+
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+User_Alias      GB_RRR = user1, user2
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+GB_RRR  ALL=(ALL)NOPASSWD:/usr/bin/apt-get
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+
+
+nikolay@nikolay-GB:~$ su user3
+Password: 
+user3@nikolay-GB:/home/nikolay$ sudo apt-get install nmap
+[sudo] password for user3: 
+user3 is not in the sudoers file.  This incident will be reported.
+user3@nikolay-GB:/home/nikolay$ su user2
+Password: 
+user2@nikolay-GB:/home/nikolay$ sudo apt-get install nmap
+[sudo] password for user2: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libblas3 liblinear4 liblua5.3-0 lua-lpeg nmap-common
+Suggested packages:
+  liblinear-tools liblinear-dev ncat ndiff zenmap
+The following NEW packages will be installed:
+  libblas3 liblinear4 liblua5.3-0 lua-lpeg nmap nmap-common
+0 upgraded, 6 newly installed, 0 to remove and 110 not upgraded.
+Need to get 5.669 kB of archives.
+After this operation, 26,8 MB of additional disk space will be used.
+Do you want to continue? [Y/n] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gdm
+sssd
+nikolay
+systemd-coredump
+vboxadd
+

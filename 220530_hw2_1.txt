@@ -1,0 +1,2 @@
+gb_nikolay@1249:~$ uname -a
+Linux 1249 5.15.0-33-generic #34-Ubuntu SMP Wed May 18 13:34:26 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux

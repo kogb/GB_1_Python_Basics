@@ -1,0 +1,171 @@
+gb_nikolay@1249:/home$ cd gb_nikolay
+gb_nikolay@1249:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  snap  Templates  Videos
+gb_nikolay@1249:~$ mkdir students
+gb_nikolay@1249:~$ mkdir mentors
+gb_nikolay@1249:~$ ls
+Desktop    Downloads  Music     Public  students   Videos
+Documents  mentors    Pictures  snap    Templates
+gb_nikolay@1249:~$ cd students
+gb_nikolay@1249:~/students$ > students_list.txt
+gb_nikolay@1249:~/students$ cd ..
+gb_nikolay@1249:~$ cd mentors
+gb_nikolay@1249:~/mentors$ > mentors_list.txt
+gb_nikolay@1249:~/mentors$ cd ..
+gb_nikolay@1249:~$
+gb_nikolay@1249:~$ pwd
+/home/gb_nikolay
+gb_nikolay@1249:~$ cd students
+gb_nikolay@1249:~/students$ ls
+students_list.txt
+gb_nikolay@1249:~/students$ nano students_list.txt
+gb_nikolay@1249:~/students$ cd ..
+gb_nikolay@1249:~$ cd mentors
+gb_nikolay@1249:~/mentors$ nano mentors_list.txt
+gb_nikolay@1249:~/mentors$ 
+gb_nikolay@1249:~/mentors$ more mentors_list.txt
+
+Преподаватель
+Кирилл Иванов
+
+Наставник
+Евгений Ринкевич
+
+Наставник
+Ксения Локтева
+
+Наставник
+Павел Церульников
+gb_nikolay@1249:~/mentors$ 
+gb_nikolay@1249:~/mentors$ mv mentors_list.txt ../students
+gb_nikolay@1249:~/mentors$ 
+gb_nikolay@1249:~/mentors$ rm -r ../mentors
+gb_nikolay@1249:~/mentors$ cd ..
+gb_nikolay@1249:~$ cd mentors
+bash: cd: mentors: No such file or directory
+b_nikolay@1249:~$ mv students students_and_mentors
+gb_nikolay@1249:~$ ls
+Desktop    Downloads  Pictures  snap                  Templates
+Documents  Music      Public    students_and_mentors  Videos
+gb_nikolay@1249:~$
+gb_nikolay@1249:~$ cd students_and_mentors
+gb_nikolay@1249:~/students_and_mentors$ more students_list.txt
+Павел Мякишев
+
+Вадим Митрофанов
+
+Лейла Джаббарова
+
+Сыролев Павел Петрович
+
+Сергей Малейчик
+
+Алексей Иванов
+
+Колесник Андрей
+
+Владимир Александрович Ёлкин
+
+Павел Лешкович
+
+Алёна Калашникова
+
+Дмитрий Брусов
+
+--More--(36%)
+gb_nikolay@1249:~/students_and_mentors$
+gb_nikolay@1249:~/students_and_mentors$ rm -r ../students_and_mentors
+gb_nikolay@1249:~/students_and_mentors$
+gb_nikolay@1249:~/students_and_mentors$ cd ../..
+gb_nikolay@1249:/home$ sudo systemctl status ssh
+[sudo] password for gb_nikolay: 
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: e>
+     Active: active (running) since Sun 2022-06-05 12:21:12 +03; 4h 35min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 758 (sshd)
+      Tasks: 1 (limit: 2455)
+     Memory: 2.6M
+        CPU: 84ms
+     CGroup: /system.slice/ssh.service
+             └─758 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+gb_nikolay@1249:/home$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/gb_nikolay/.ssh/id_rsa): 
+Created directory '/home/gb_nikolay/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/gb_nikolay/.ssh/id_rsa
+Your public key has been saved in /home/gb_nikolay/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:P+59bXfqfziTUygpd+i/E8+chWZwvJdfy9SLv0DNqIo gb_nikolay@1249
+The key's randomart image is:
++---[RSA 3072]----+
+|                 |
+|                 |
+|             .   |
+|            . *  |
+|        S    B *o|
+|         .. B Oo*|
+|          o= *+@B|
+|        ...o..X=@|
+|       E oo .+*%*|
++----[SHA256]-----+
+gb_nikolay@1249:/home$ ssh-copy-id gb_nikolay@192.168.100.7
+The authenticity of host '192.168.100.7 (192.168.100.7)' can't be established.
+ED25519 key fingerprint is SHA256:bMSkqagSNGfWi9sGVnqx2I8jLdqhxr066Mhje90bIC4.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+gb_nikolay@192.168.100.7's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'gb_nikolay@192.168.100.7'"
+and check to make sure that only the key(s) you wanted were added.
+
+gb_nikolay@1249:/home$ 
+
+
+
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                 • MobaXterm Personal Edition v22.0 •                 │
+    │               (SSH client, X server and network tools)               │
+    │                                                                      │
+    │ ➤ SSH session to gb_nikolay@192.168.100.7                            │
+    │   • Direct SSH      :  ✔                                             │
+    │   • SSH compression :  ✔                                             │
+    │   • SSH-browser     :  ✔                                             │
+    │   • X11-forwarding  :  ✔  (remote display is forwarded through SSH)  │
+    │                                                                      │
+    │ ➤ For more info, ctrl+click on help or visit our website.            │
+    └──────────────────────────────────────────────────────────────────────┘
+
+Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-33-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+20 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Last login: Sun Jun  5 16:58:24 2022 from 192.168.100.9
+gb_nikolay@1249:~$
+
+
+
+
+
+
+Jun 05 12:21:11 1249 systemd[1]: Starting OpenBSD Secure Shell server...
+Jun 05 12:21:12 1249 sshd[758]: Server listening on 0.0.0.0 port 22.
+Jun 05 12:21:12 1249 sshd[758]: Server listening on :: port 22.
+Jun 05 12:21:12 1249 systemd[1]: Started OpenBSD Secure Shell server.
+lines 1-16/16 (END)
+
+
+
+
